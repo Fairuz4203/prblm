@@ -1,0 +1,114 @@
+@media (max-width: 767px){
+    #banners .slider {
+        height: 545px;
+    }
+    #banners .slider h2 {
+        font-size: 42px;
+    }
+}
+@media (max-width: 767px){
+    .card-1{
+        border-radius: 8px 0 0 8px;
+        padding: 40px;
+       width: 330px;
+       height: 222px;
+}
+.heading {
+    font-size: 20px;
+}
+
+#products {
+    padding: 30px 0 60px;
+}
+#productNav{
+    gap: 18px;
+    
+}
+
+#productNav li a {
+    font-size: 14px;
+   
+}
+
+#productNav li a::after {
+    display: none;
+}
+.heading-2{
+    font-size: 30px;
+}
+.milk{
+    margin-top: 10px;
+    padding-left: 10px;
+margin-left: 0px;
+width: 400px; 
+}
+.coke{
+    margin-top: 10px;
+    padding-left: 10px;
+margin-left: 0px;
+width: 400px;
+
+}
+.coke .btn{
+   margin-left: 180px;
+}
+.breakfast {
+    margin-top: 10px;
+    padding-left: 10px;
+    margin-left: 0px;
+    width: 400px;
+
+}
+#bestDeal .timer {
+    flex-direction: column;
+}
+#bestDeal .timer li{
+    width: 100%;
+}
+#bestDeal .timer li::after{
+    display: none;
+}
+.card-2{
+margin-left: 5px;
+padding-left: 5px;
+}
+.card-3{
+    margin-left: 5px;
+    padding-left: 5px;
+}
+.card-4{
+    margin-left: 5px;
+    padding-left: 5px;
+}
+#video img {
+    transform: none;
+    top: 0;
+  }
+
+}
+.container, .container-lg, .container-md, .container-sm {
+    max-width: 960px;
+}
+#subcribeArea {
+    transform: translateY(0);
+}
+#subcribeArea .subcribe img {
+    margin-bottom: 20px;
+}
+#subcribeArea .subcribecnt h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    padding: 0 0 0 0;
+}
+#subcribeArea .subcribecnt p {
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.subcribebtn {
+    margin-bottom: 20px;
+}
+.footer {
+    margin-bottom: 80px;
+}
