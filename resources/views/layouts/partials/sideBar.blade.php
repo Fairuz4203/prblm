@@ -43,3 +43,19 @@
                             <div class="side-menu__title">Category </div>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route ('backend.banner.index') }}" 
+                        class="side-menu {{request()->routeIs(patterns:'backend.banner.*') ? 'side-menu--active side-menu--open' : '' }}">
+                            <div class="side-menu__icon"> <i data-feather="image"></i> </div>
+                            <div class="side-menu__title"> Banner </div>
+                        </a>
+                    </li>
+
+    <li>
+                        <a href="{{ route ('backend.product.index') }}" 
+                        class="side-menu {{request()->routeIs(patterns:'backend.product.*') ? 'side-menu--active side-menu--open' : '' }}">
+                            <div class="side-menu__icon"> <i data-feather="image"></i> </div>
+                            <div class="side-menu__title"> Products </div>
+                        </a>
+                    </li>
+                 

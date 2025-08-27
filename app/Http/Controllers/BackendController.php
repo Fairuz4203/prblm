@@ -7,7 +7,13 @@ class BackendController extends Controller
 {
     public function index(Request $request)
     {
-        
+      
         return view('backend.dashboard');
+    }
+
+    public function banner(Request $request)
+    {
+      
+        return view('backend.banner');
     }
 }

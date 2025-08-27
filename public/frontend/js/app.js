@@ -16,7 +16,40 @@ $(document).ready(function(){
       dots: true,
     })
    
-        
+     $(document).ready(function () {
+    $('.bannerSlider').slick({
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: false,
+      fade: true,
+      asNavFor: '.minibannerSlider'
+    });
+     $('.minibannerSlider').slick({
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      asNavFor: '.bannerSlider',
+      vertical: true,
+      verticalSwiping: true,
+      autoplay: true,
+      autoplaySpeed: 2000,
+      focusOnSelect: true,
+      prevArrow: '.slick-prev',
+      nextArrow: '.slick-next',
+      responsive: [
+        {
+          breakpoint: 767,
+          settings: {
+            vertical: false,
+            verticalSwiping: false,
+            arrows: false,
+            dots: true,
+          }
+        }
+      ]
+    });
+  });
+   
+            
     
 
 $('.timer').countdown($('.timer').attr('data-date'), function(event) {

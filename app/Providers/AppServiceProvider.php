@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Providers;
+use App\Models\Category;
 
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -23,7 +24,14 @@ class RouteServiceProvider extends ServiceProvider
      * Define your route model bindings, pattern filters, and other route configuration.
      */
     public function boot(): void
+
     {
+        view()->composer('layouts.frontendlayouts', function($view){
+            return $view->with('categories',Category::active()->get());
+
+        });
+
+
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
         });

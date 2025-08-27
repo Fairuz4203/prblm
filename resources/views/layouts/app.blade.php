@@ -21,9 +21,11 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- BEGIN: CSS Assets-->
         <link rel="stylesheet" href="{{ asset('backend/dist/css/app.css') }}"/>
         <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
-        <link
-    href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+        <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
     rel="stylesheet"/>
+  
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.css" />
+    @stack('styles')
         <!-- END: CSS Assets-->
     </head>
     <!-- END: Head -->
@@ -606,6 +608,29 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
         <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBG7gNHAhDzgYmq4-EHvM4bqW1DNj2UCuk&libraries=places&callback=initMap"></script>
+        <script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ <script>
+  const Toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.onmouseenter = Swal.stopTimer;
+    toast.onmouseleave = Swal.resumeTimer;
+  }
+});
+</script>
+  @if(session()->has('msg'))
+    <script>
+    Toast.fire({
+  icon: "{{ session('msg')['type'] ?? 'success'}}",
+  title: "{{ session('msg')['res'] ?? 'success'}}"
+});
+</script>
+  @endif
         <script src="{{ asset('backend/dist/js/app.js') }}"></script>
         @stack('scripts')
         <!-- END: JS Assets-->

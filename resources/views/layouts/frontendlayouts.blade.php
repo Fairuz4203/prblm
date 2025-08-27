@@ -11,8 +11,11 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/all.min.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('frontend/css/slick.css') }}">
+   <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/responsive.css') }}">
+     @stack('css')
 </head>
 <body>
     
@@ -57,10 +60,19 @@
                     <a href="/"><img src="{{ asset( 'frontend/images/Logo .png ') }}" class="img-fluid" alt=""></a>
                 </div>
                 <div class="col-lg-6 search order-3 order-lg-2 my-3 my-lg-0">
-                    <form action="" class="d-flex">
+                    <form action="{{ route('frontend.category.archive') }}" method="get" class="d-flex">
                         <div class="search-input">
-                        <input type="text" placeholder="search">
-                        <span class="lh-0  search-icon"><i class="fa-solid fa-magnifying-glass" width="15px"></i></span>
+                        <input  value ="{{ request()->search }}" type="text" placeholder="search" name="search">
+                        <span class="lh-0  search-icon"><i class="fa-solid fa-magnifying-glass" width="15px"></i>
+                    </span>
+                    <div class="searchResult position-absolute bg-white w-100 p-3 shadow" style="z-index: 99999; display:none">
+                        <ul>
+                           
+                            
+                        </ul>
+
+                    </div>
+
                     </div>
                     <button type="submit">Search</button>
                     </form>
@@ -114,43 +126,18 @@
                                 <i class="fa-solid fa-bars"></i>
                                 All Categories<i class="fa-solid fa-chevron-down"></i></a>
                                 <ul class="submenu">
+                                    @foreach ($categories as $category)
                                     <li>
-                                        <a href="#"><img src="{{ asset('fronend/images/cc201-en-p.jpg') }}" alt=""> Bulb</a>
+                                        <a href="#">
+                                            <img src="{{ asset('storage/'. $category->icon) }}" alt="">  {{ $category->category_title }}
+                                        </a>
                                     </li>
-                                    <li>
-                                        <a href="#"><img src="{{ asset('fronend/images/JI230816Cosmos220-6d9254f-edited-scaled.jpg') }}" alt="">  Flowers</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><img src="{{ asset('fronend/images/bigstock-Fresh-Fruits-assorted-Fruits-C-365480089.webp') }}" alt="">  Fruits</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><img src="{{ asset('fronend/images/images.jpeg') }}" alt=""> Fungi</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><img src="{{ asset('fronend/images/download.jpeg') }}" alt="">
-                                        Leaves</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><img src="{{ asset('fronend/images/roots.jpeg') }}" alt="">
-                                            Roots</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><img src="{{ asset('fronend/images/seeds.jpeg') }}" alt="">
-                                            Seeds</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><img src="{{ asset('fronend/images/tuber.jpeg') }}" alt="">
-                                            Tubers</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><img src="{{ asset('fronend/images/stems.jpeg') }}" alt="">
-                                            Stems</a>
-                                    </li>
-
+                                    @endforeach
+                                 
                                 </ul>
                         </li>
-                        <li><a href="/" class="active">Home</a></li>
-                <li><a href="#">Shop</a></li>
+                        <li><a href="{{ url('/')}}" class="{{ request()->RouteIs('frontend.index') ? 'active' : '' }}">Home</a></li>
+                <li><a href="{{ url('/shop')}}" class="{{ request()->RouteIs('frontend.category.archive') ? 'active' : '' }}">Shop</a></li>
                 <li><a href="#">Pages</a></li>
                 <li><a href="#">Blog</a></li>
                 <li><a href="/about">About Us</a></li>
@@ -175,8 +162,8 @@
         </div>
         <div class="offcanvas-body">
             <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="#">Shop</a></li>
+                <li><a href="{{ url('/')}}">Home</a></li>
+                <li><a href="{{ url('/shop')}}">Shop</a></li>
                 <li><a href="#">Pages</a></li>
                 <li><a href="#">Blog</a></li>
                 <li><a href=" /about">About Us</a></li>
@@ -326,6 +313,44 @@
     <script src="{{ asset('frontend/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('frontend/js/jquery.countdown.min.js') }}"></script>
     <script src="{{ asset('frontend/js/venobox.min.js') }}"></script>
-    <script src="{{asset('frontend/js/app.js') }}"></script>
+    <script src ="{{ asset('frontend/js/om-javascript-range-slider.js') }}"></script>
+    <script src="{{asset('frontend/js/app.js') }}"> </script>
+    <script>
+        $('.search-input input').keyup(function(){
+            const searchValue = $(this).val()
+           if(searchValue.length >=3){
+            $.ajax({
+                url: `{{ route('frontend.search') }}`,
+                method: `GET`,
+                data:{
+                    search: searchValue
+                },
+                success: function(res){
+                  if(res.length > 0){
+                    let searchItems = [];
+                   res.forEach(item =>{
+                      let url = `{{ route('frontend.product.show','::slug') }}`
+                      url =  url.replace('::slug', item.slug)
+                      let liItem = `<li class="my-2"><a href="${url}">${item.title}</a></li>`
+                       searchItems.push(liItem)     
+                   })
+                    $('.searchResult ul').html(searchItems)
+                  }else{
+                   $('.searchResult ul').html ('No product found!')
+                  }
+                },
+                error: function(error){
+                     console.log(error)
+                },
+
+            })
+              $('.searchResult').slideDown()
+           }else{
+            $('.searchResult').hide()
+           }
+          
+        })
+    </script>
+  @stack('script')
 </body>
 </html>

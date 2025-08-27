@@ -11,9 +11,19 @@ use App\Models\Category;
 
 class CategoryController extends Controller
 {
-    function index(): View {
-        return view ('backend.category.index');
+    function index():View {
+        try {
+        $categories = Category::latest()
+            ->orderBy('status', 'DESC')
+            ->get();
+       
+        return view('backend.category.index', compact('categories'));
+
+    } catch (\Throwable $th) {
+       
     }
+}
+
 
     function create(): View {
         return view ('backend.category.create');
@@ -41,7 +51,24 @@ class CategoryController extends Controller
             'slug'=> $request->slug,
             'icon'=> $path
         ]);
+
+        return to_route('backend.category.index')->with('msg',[
+            'type'=>'success',
+            'res' =>'Category has created successfully .'
+        ]);
+
        
+    }
+    function statusUpdate($id){
+        $category = Category::findOrFail($id);
+        $category->status = !$category->status;
+          $category->save();
+          return to_route('backend.category.index')->with('msg', []);
+    }
+    public function edit(Category $category)
+    {
+        return view('backend.category.edit', compact('category'));
     }
     
 }
+
