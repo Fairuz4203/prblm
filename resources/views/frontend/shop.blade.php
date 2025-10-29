@@ -12,7 +12,7 @@
     <div class="container">
       <ul>
         <li class="d-flex align-items-center">
-          <a href="../page-4/index.html" class="homeIcom">
+          <a href="{{ url('/')}}" class="homeIcom">
             <iconify-icon icon="fluent:home-16-regular" width="20" height="22"></iconify-icon>
           </a>
           <iconify-icon icon="formkit:right" width="15" height="15" style="color: #999"></iconify-icon>
@@ -186,7 +186,7 @@
             <!-- ------------------------ Discount Start Here ------------  -->
             <div class="discount"  >
               <a href="#">
-                <img class="img-fluid" src="./images/discount.png" alt="">
+                <img class="img-fluid" src="{{ asset('frontend/images/discount.png') }}" alt="">
               </a>
             </div>
             <!-- ------------------------ Discount End Here ------------  -->
@@ -196,7 +196,7 @@
               <div class="saleCard">
                 <a href="#">
                   <div class="row">
-                    <img class="col-4 img-fluid" src="./images/FreshMango.png" alt="">
+                    <img class="col-4 img-fluid" src="{{ asset('frontend/images/Mango.png') }}" alt="">
                     <div class="col-8">
                       <h4> Fresh Mango</h4>
                       <span>$32.00 <del>$20.99</del></span>
@@ -214,7 +214,7 @@
               <div class="saleCard">
                 <a href="#">
                   <div class="row">
-                    <img class="col-4 img-fluid" src="./images/red capsicum.png" alt="">
+                    <img class="col-4 img-fluid" src="{{ asset('frontend/images/red capsicum.png') }}" alt="">
                     <div class="col-8">
                       <h4>Red Capsicum</h4>
                       <span>$32.00 <del>$20.99</del></span>
@@ -232,7 +232,7 @@
               <div class="saleCard">
                 <a href="#">
                   <div class="row">
-                    <img class="col-4 img-fluid" src="./images/GreenCapsicum.png" alt="">
+                    <img class="col-4 img-fluid" src="{{ asset('frontend/images/eggplant.png') }}" alt="">
                     <div class="col-8">
                       <h4>Green Capsicum</h4>
                       <span>$32.00 <del>$20.99</del></span>
@@ -303,13 +303,15 @@
                   @else
                   <strong>{{ number_format($product->price,2)}} ৳ </strong>
                   @endif
+                  <span>
                   <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18" height="18"></iconify-icon>
                   <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18" height="18"></iconify-icon>
                   <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18" height="18"></iconify-icon>
                   <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18" height="18"></iconify-icon>
                   <iconify-icon class="halfStar" icon="material-symbols:star-rounded" width="18" height="18"></iconify-icon>
-                  
-                  <a class="addToCart" href="#"><iconify-icon icon="heroicons:shopping-bag" width="24" height="24"></iconify-icon></a>
+              
+                  <a class="addToCart" href="{{ route('cart.add', $product->id) }}"><iconify-icon icon="heroicons:shopping-bag" width="24" height="24"></iconify-icon></a>
+
                 </div>
               </div>
           @empty

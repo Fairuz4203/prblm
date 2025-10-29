@@ -67,17 +67,39 @@ class FrontendController extends Controller
         return view('frontend.shop', compact('products', 'category', 'productCategories'));
     }
 
-     function showProduct($slug){
-      if(!$slug){
+     function showProduct($slug)
+{
+    if (!$slug) {
         abort(404);
-      }
-      $product = Product::with('reviews.user:id,name,email')->where('slug', $slug)->first();
-     $hasReview= Review::where('user_id', auth()->id() ?? null)->where('product_id',$product->id)->exists();
-    
-       $relatedProducts = Product::where('status',1)->where('category_id',$product->category_id)->whereNot('id',$product->id)->select('id', 'slug','title','price','selling_price','featured_img')->latest()->take(4)->get();
-       
-      return view('frontend.product' , compact('product','relatedProducts','hasReview'));
-     }
+    }
+
+    $product = Product::with('reviews.user:id,name,email')
+        ->where('slug', $slug)
+        ->first();
+
+    // Handle case where no product is found
+    if (!$product) {
+        abort(404, 'Product not found');
+    }
+
+    $hasReview = false;
+    if (auth()->check()) {
+        $hasReview = Review::where('user_id', auth()->id())
+            ->where('product_id', $product->id)
+            ->exists();
+    }
+
+    $relatedProducts = Product::where('status', 1)
+        ->where('category_id', $product->category_id)
+        ->where('id', '!=', $product->id)
+        ->select('id', 'slug', 'title', 'price', 'selling_price', 'featured_img')
+        ->latest()
+        ->take(4)
+        ->get();
+
+    return view('frontend.product', compact('product', 'relatedProducts', 'hasReview'));
+}
+
 
      function reviewSubmit(Request $request){
       $request->validate([

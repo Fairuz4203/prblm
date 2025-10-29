@@ -68,42 +68,47 @@
 
 
       <!-- =================Banner Section Ends================ -->
-       <!-- ======================Card Section Starts============ -->
-        <section id="card">
-            <div class="container">
-                <div class="row d-flex">
-                    <div class="col-lg-3">
-                        <div class="card-1">
-                        <img src="{{ asset('frontend/images/Icon (1).png') }}"  class="img-fluid" alt="">
-                        <h5>Free Shipping</h5>
-                        <p>Free shipping with discount</p>
-                    </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="card-2">
-                        <img src="{{ asset('frontend/images/Icon (2).png') }}"  class="img-fluid" alt="">
-                        <h5>Great Support 24/7</h5>
-                        <p>Instant access to Contact</p>
-                    </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="card-3">
-                        <img src="{{ asset('frontend/images/Icon (3).png') }}"  class="img-fluid" alt="">
-                        <h5>100% Secure Payment</h5>
-                        <p>We ensure your money is save</p>
-                    </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="card-4">
-                        <img src="{{ asset('frontend/images/Icon (4).png') }}"  class="img-fluid" alt="">
-                        <h5>Money-Back Guarantee</h5>
-                        <p>30 days money-back guarantee</p>
-                    </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- ======================Card Section Ends============ -->
+       <!-- ====================== Card Section Starts ============ -->
+<section id="card">
+  <div class="container">
+    <div class="row gx-4 gy-4 justify-content-center">
+
+      <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="card-box text-center">
+          <img src="{{ asset ('frontend/images/Icon (1).png') }}" class="img-fluid" alt="">
+          <h5>Free Shipping</h5>
+          <p>Free shipping with discount</p>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="card-box text-center">
+          <img src="{{ asset ('frontend/images/Icon (2).png') }}" class="img-fluid" alt="">
+          <h5>Great Support 24/7</h5>
+          <p>Instant access to Contact</p>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="card-box text-center">
+          <img src="{{ asset ('frontend/images/Icon (3).png') }}" class="img-fluid" alt="">
+          <h5>100% Secure Payment</h5>
+          <p>We ensure your money is safe</p>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="card-box text-center">
+          <img src="{{ asset ('frontend/images/Icon (4).png') }}" class="img-fluid" alt="">
+          <h5>Money-Back Guarantee</h5>
+          <p>30 days money-back guarantee</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- ====================== Card Section Ends ============ -->
          <!-- ======================Product Section Starts============= -->
          <section id="products">
             <div class="container">

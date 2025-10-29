@@ -1,7 +1,25 @@
 @extends('layouts.frontendlayouts')
 @section('content')
 
-  <!-- * ======== Main Content Starts ======== -->
+
+  <!------------- Breadcrumbs Start Here ----------->
+  <section id="Breadcrumbs">
+    <div class="container">
+      <ul>
+        <li class="d-flex align-items-center">
+          <a href="{{ url('/')}}" class="homeIcon">
+            <iconify-icon icon="fluent:home-16-regular" width="20" height="22"></iconify-icon>
+          </a>
+          <iconify-icon icon="formkit:right" width="15" height="15" style="color: #999"></iconify-icon>
+        </li>
+        <li class="d-flex align-items-center">
+          <a href= "./about.html" class="active">About Us</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <!-- Breadcrumbs End Here --> 
+<!-- * ======== Main Content Starts ======== -->
 <main id="About">
   <div class="container">
     <div class="row aboutFristRow justify-content-center align-items-center">
@@ -51,7 +69,7 @@
             <div class="col-md-6 justify-content-center">
               <div class="feature-card d-flex align-items-start p-3 rounded-3">
                 <div class="icon-circle me-3 flex-shrink-0">
-                  <i class='bx  bx-headphone-mic'></i>
+                  <i class='bx  bx-headphone'></i>
                 </div>
                 <div>
                   <h5 class="mb-1">Great Support 24/7</h5>
@@ -84,7 +102,7 @@
             <div class="col-md-6">
               <div class="feature-card d-flex align-items-start p-3 rounded-3">
                 <div class="icon-circle me-3 flex-shrink-0">
-                  <i class='bx  bx-truck'></i>
+                  <i class='bx  bxs-truck'></i>
                 </div>
                 <div>
                   <h5 class="mb-1">Free Shipping</h5>
@@ -95,7 +113,7 @@
             <div class="col-md-6">
               <div class="feature-card d-flex align-items-start p-3 rounded-3">
                 <div class="icon-circle me-3 flex-shrink-0">
-                  <i class='bx  bx-box-alt'></i>
+                  <i class='bx  bx-box'></i>
                 </div>
                 <div>
                   <h5 class="mb-1">100% Organic Food</h5>
@@ -137,4 +155,7 @@
  <!-- ------------------main section ends here--------------- -->
 
 <!-- ----------------footer starts here--------------- -->
+ @push('script')
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  @endpush
 @endsection

@@ -465,169 +465,63 @@ line-height: 120%;
 	right: 0;
   }
   /* ====================banner ends================ */
-  /* ---------------------card section starts-------------- */
- 
-  
-  
- 
+ /* --------------------- Card Section Starts -------------- */
+#card {
+  padding: 60px 0;
+}
 
-  
-  #card img{
-	padding-left: 30px;
-	padding-top: 5px;
-  }
- 
-  .card-1{
-	box-shadow: 0 16px 48px 0 rgba(14, 107, 21, 0.08);
-	background-color: var(--gray-scale-white);
-	border-radius: 8px 0 0 8px;
-    padding: 40px;
-   width: 330px;
-   height: 222px;
-   transition: cubic-bezier(0.075, 0.82, 0.165, 1);
-	
+#card img {
+  padding-top: 5px;
+  max-width: 60px;
+}
 
-  }
-.card-1:hover,
-.card-1:hover *{
-     background: var(--branding-success);
-	 color: var(--gray-scale-white);
-  }
+.card-box {
+  box-shadow: 0 16px 48px 0 rgba(14, 107, 21, 0.08);
+  background-color: var(--gray-scale-white);
+  border-radius: 8px;
+  padding: 40px 20px;
+  height: 222px;
+  transition: all 0.3s ease;
+}
 
-    .card-1 h5{
-	font-family: var(--font-family);
-font-weight: 600;
-font-size: 18px;
-line-height: 150%;
-color: var(--gray-scale-gray-–-900);
-padding-top: 16px;
-padding-left: 30px;
-padding-bottom: 5px;
-  }
-   .card-1 p{
-	font-family: var(--font-family);
-font-weight: 400;
-font-size: 14px;
-line-height: 150%;
-color: var(--gray-scale-gray-–-400);
-padding-bottom: 40px;
-padding-left: 30px;
+.card-box h5 {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 150%;
+  color: var(--gray-scale-gray-900);
+  margin-top: 16px;
+  margin-bottom: 5px;
+}
 
+.card-box p {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  color: var(--gray-scale-gray-400);
+  margin-bottom: 0;
+}
 
-  }
-    .card-2{
-		box-shadow: 0 16px 48px 0 rgba(14, 107, 21, 0.08);
-		background: var(--gray-scale-white);
-	padding: 40px;
-width: 330px;
-height: 222px;
-margin-left: 45px;
-transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+.card-box:hover {
+  background: var(--branding-success);
+  color: var(--gray-scale-white);
+  transform: translateY(-8px);
+}
 
+.card-box:hover h5,
+.card-box:hover p {
+  color: var(--gray-scale-white);
+}
 
+/* Add spacing between rows on smaller screens */
+@media (max-width: 992px) {
+  .card-box {
+    height: auto;
+    margin-bottom: 20px;
   }
-  
-  .card-2:hover,
-  .card-2:hover *{
-	background: var(--branding-success);
-	color: var(--gray-scale-white);
-  }
-    .card-2 h5{
-	font-family: var(--font-family);
-font-weight: 600;
-font-size: 18px;
-line-height: 150%;
-color: var(--gray-scale-gray-–-900);
-padding-top: 16px;
-padding-left: 30px;
-
-padding-bottom: 5px;
-
-  }
-  .card-2 p{
-	font-family: var(--font-family);
-font-weight: 400;
-font-size: 14px;
-line-height: 150%;
-color: var(--gray-scale-gray-–-400);
-padding-bottom: 40px;
-padding-left: 30px;
-  }
-   .card-3{
-	box-shadow: 0 16px 48px 0 rgba(14, 107, 21, 0.08);
-	background: var(--gray-scale-white);
-	padding: 40px;
-	padding-right: 40px;
-width: 330px;
-height: 222px;
-margin-left: 50px;
-margin-right: 55px;
-transition: cubic-bezier(0.075, 0.82, 0.165, 1);
-
-  }
-  .card-3:hover,
-  .card-3:hover *{
-	background: var(--branding-success);
-	color: var(--gray-scale-white);
-  }
-    .card-3 h5{
-	font-family: var(--font-family);
-font-weight: 600;
-font-size: 18px;
-line-height: 150%;
-color: var(--gray-scale-gray-–-900);
-padding-top: 16px;
-padding-left: 30px;
-padding-bottom: 5px;
-
-  }
-   .card-3 p{
-	font-family: var(--font-family);
-font-weight: 400;
-font-size: 14px;
-line-height: 150%;
-color: var(--gray-scale-gray-–-400);
-padding-bottom: 40px;
-padding-left: 30px;
-  }
-   .card-4{
-	box-shadow: 0 16px 48px 0 rgba(14, 107, 21, 0.08);
-	background: var(--gray-scale-white);
-	border-radius: 0 8px 8px 0;
-padding: 40px;
-width: 330px;
-height: 222px;
-margin-left: 55px;
-transition: cubic-bezier(0.075, 0.82, 0.165, 1);
-  }
-  .card-4:hover,
-  .card-4:hover *{
-	color: var(--gray-scale-white);
-	background: var(--branding-success);
-	
-  }
-
-   .card-4 h5{
-	font-family: var(--font-family);
-font-weight: 600;
-font-size: 18px;
-line-height: 150%;
-color: var(--gray-scale-gray-–-900);
-display: inline-block;
-padding-top: 16px;
-padding-left: 20px;
-padding-bottom: 5px;
-  }
-   .card-4 p{
-	font-family: var(--font-family);
-font-weight: 400;
-font-size: 14px;
-line-height: 150%;
-color: var(--gray-scale-gray-–-400);
-padding-bottom: 40px;
-padding-left: 20px;
-  }
-   /* ---------------------card section ends-------------- */
+}
+/* --------------------- Card Section Ends -------------- */
    /* ======================Product Section Starts============= */
    #products {
 	padding: 109px 0 200px;
@@ -1593,7 +1487,7 @@ margin-top: 100px;
 }
 /* *Breadcrumbs Start Here */
 #Breadcrumbs {
-	background-image: url(../images/Breadcrumbs.png);
+	background-image: url("/frontend/images/Breadcrumbs.png");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;

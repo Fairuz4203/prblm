@@ -18,7 +18,7 @@
     <div class="container">
       <ul>
         <li class="d-flex align-items-center">
-          <a href=".index.html" class="homeIcom">
+          <a href="{{ url('/')}}" class="homeIcom">
             <iconify-icon icon="fluent:home-16-regular" width="20" height="22"></iconify-icon>
           </a>
           <iconify-icon icon="formkit:right" width="15" height="15" style="color: #999"></iconify-icon>
@@ -133,17 +133,14 @@
             </div>
             <!-- Price Section -->
 <div class="productPrice mb-3">
-   @if ($product->selling_price) 
-   <span class="original-price">{{ number_format($product->selling_price,2) }}৳</span> 
-   <span class="current-price ms-2">{{ number_format ($product->price) }}৳</span>
-       @php
-            $discount = round((($product->selling_price - $product->price) / $product->selling_price) * 100);
-        @endphp 
-      
-            <span class="discount-badge ms-2">{{ $discount }}% OFF</span>
-      
-     @else
-      <span class="original-price">{{ number_format ($product->price) }}৳</span>
+   @if ($product->selling_price)
+   <span class="current-price">{{ number_format($product->selling_price,2) }}৳</span>
+    <span class=" original-price ms-2">{{ number_format($product->price) }}৳</span>
+    <span class="discount-badge ms-2">
+            {{ round(100 - ((100/$product->price) * $product->selling_price)) }}
+            % OFF</span>
+          @else
+          <span class="original-price">{{ number_format($product->price) }}</span>
       @endif 
 </div>
 
@@ -172,28 +169,32 @@
 
             <!-- Cart Button  -->
             <div class="cartBtn mb-4 ">
+              @if ($product->stock)
               <div class="d-flex align-items-center">
                 <!-- <div class="quantity-selector me-3">
                   <button class="quantity-btn decrease-btn">-</button>
                   <input type="text" class="quantity-input" value="1" readonly>
                   <button class="quantity-btn increase-btn">+</button>
                 </div> -->
+                  <form action="{{ route('cart.add', $product->id) }}" method="GET" class="d-flex">
                 <div class="quantity-control">
-                  <button class="quantity-btn decrease-btn quantityDecrement">-</button>
-                  <input type="number" class="quantity-input" value="1">
-                  <button class="quantity-btn increase-btn quantityIncrement">+</button>
+                  <button type="button" class="quantity-btn decrease-btn quantityDecrement">-</button>
+                  <input type="number" class="quantity-input"  name ="quantity" value="1">
+                  <button type="button" class="quantity-btn increase-btn quantityIncrement">+</button>
                 </div>
 
-                <a href="cart.html"
-   class="add-to-cart-btn d-flex justify-content-center gap-4 btn flex-grow-1 me-2">
-   Add to Cart
-   <iconify-icon class="d-none d-lg-block" icon="gala:bag" width="20" height="20"></iconify-icon>
-</a>
+                <button type="submit"
+              class=" add-to-cart-btn  d-flex justify-content-center gap-4 btn w-100 me-2">
+         Add to Cart
+        <iconify-icon class="d-none d-lg-block" icon="gala:bag" width="20" height="20"></iconify-icon>
+       </button>
 
                 <button class="wishlist-btn">
                   <iconify-icon icon="iconamoon:heart" width="23" height="23"></iconify-icon>
                 </button>
-              </div>
+             </form>
+              </div> 
+              @endif
             </div>
             <!-- Tag and Category -->
             <div class="category mb-3">

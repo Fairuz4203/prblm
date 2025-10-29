@@ -2,12 +2,13 @@
 
 namespace App\Providers;
 use App\Models\Category;
-
+use App\Models\Cart;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Pagination\Paginator;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -27,7 +28,15 @@ class RouteServiceProvider extends ServiceProvider
 
     {
         view()->composer('layouts.frontendlayouts', function($view){
-            return $view->with('categories',Category::active()->get());
+            return $view
+            ->with('categories',Category::active()->get())
+             ->with('cart', [
+                'cartCount' => Cart::where('customer_id',auth('customer')->id() ?? 0)->count(),
+                'cartTotal' => Cart::where('customer_id',auth('customer')->user()->id ?? 0)->get()
+                ->sum(function ($cart){
+                    return $cart->qty * ($cart->product->selling_price ?? $cart->product->price ?? 0);
+                }),
+            ]);
 
         });
 
@@ -48,5 +57,6 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->group(base_path('routes/backend.php'));
         });
+         Paginator::useBootstrapFive();
     }
 } 

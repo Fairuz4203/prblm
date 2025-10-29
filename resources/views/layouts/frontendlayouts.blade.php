@@ -44,7 +44,7 @@
                             |
                         </li>
                         <li>
-                            <a href="#"> Sign In / Sign up</a>
+                            <a href="{{ route('customer.login') }}"> Sign In / Sign up</a>
                         </li>
                         
                     </ul>
@@ -85,15 +85,15 @@
                         </li>
                         <li class="lh-0 d-none d-lg-block"><span class="divider">|</span></li>
                         <li class="lh-0 d-none d-lg-block">
-                            <a href="#" class="lh-0">
+                            <a href="{{ route('checkout') }}" class="lh-0">
                                 <div class="d-flex gap-2">
                                     <div class="icon">
                                 <i class="bi bi-handbag"></i>
-                                <span class="counter">2</span>
+                                <span class="counter">{{ $cart['cartCount'] }}</span>
                             </div>
                             <div class="cart-text">
                                 <p>Shopping cart:</p>
-                                <span>$57.00</span>
+                                <span>{{ number_format($cart['cartTotal'],2) }}৳</span>
                             </div>
                                 </div>
                             </a>
@@ -157,7 +157,7 @@
      <!-- ------------------off canvas menu starts--------- -->
      <div class="offcanvas offcanvas-start" tabindex="-1" id="smallMenu" aria-labelledby="smallMenuLabel">
         <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="smallMenuLabel"><img src="{{ asset('fronend/images/Logo .png') }}" alt=""></h5>
+          <h5 class="offcanvas-title" id="smallMenuLabel"><img src="{{ asset( 'frontend/images/Logo .png') }}" alt=""></h5>
           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
